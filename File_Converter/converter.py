@@ -1,20 +1,18 @@
 import os
 import pandas as pd
 from PIL import Image
-from pydub import AudioSegment
-import ffmpeg
+from moviepy.editor import VideoFileClip, AudioFileClip
 
 def convert_file(input_file, output_format):
     input_ext = os.path.splitext(input_file)[1].lower()
     output_ext = f".{output_format.lower()}"
 
-    # Create the output file name
     output_file = os.path.splitext(input_file)[0] + output_ext
 
     try:
         if input_ext in ['.txt', '.csv', '.json', '.xml', '.xlsx'] and output_ext in ['.txt', '.csv', '.json', '.xml', '.xlsx']:
             data_conversion(input_file, input_ext, output_file, output_ext)
-        elif input_ext in ['.jpg', '.jpeg', '.png', '.bmp', '.tiff'] and output_ext in ['.jpg', '.jpeg', '.png', '.bmp', '.tiff']:
+        elif input_ext in ['.jpg', '.jpeg', '.png', '.bmp', '.tiff', '.ico', '.jfif'] and output_ext in ['.jpg', '.jpeg', '.png', '.bmp', '.tiff', '.ico', '.jfif']:
             image_conversion(input_file, output_file)
         elif input_ext in ['.mp3', '.wav', '.flac', '.aac'] and output_ext in ['.mp3', '.wav', '.flac', '.aac']:
             audio_conversion(input_file, output_file)
@@ -57,15 +55,14 @@ def image_conversion(input_file, output_file):
     img.save(output_file)
 
 def audio_conversion(input_file, output_file):
-    audio = AudioSegment.from_file(input_file)
-    audio.export(output_file, format=os.path.splitext(output_file)[1][1:])
+    audio = AudioFileClip(input_file)
+    audio.write_audiofile(output_file)
 
 def video_conversion(input_file, output_file):
-    stream = ffmpeg.input(input_file)
-    stream = ffmpeg.output(stream, output_file)
-    ffmpeg.run(stream)
+    video = VideoFileClip(input_file)
+    video.write_videofile(output_file)
 
 if __name__ == "__main__":
     input_file = input("Enter the path to the input file: ")
-    output_format = input("Enter the desired output format (e.g., csv, json, xlsx, xml, txt, jpg, png, bmp, tiff, mp3, wav, flac, aac, mp4, avi, mkv, mov): ")
+    output_format = input("Enter the desired output format (e.g., csv, json, xlsx, xml, txt, jpg, png, bmp, tiff, jfif, ico, mp3, wav, flac, aac, mp4, avi, mkv, mov): ")
     convert_file(input_file, output_format)

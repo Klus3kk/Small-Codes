@@ -20,20 +20,19 @@ File_Converter is a versatile tool that converts various file formats for data, 
 ## 
 ### Features
 * Convert data files between formats such as CSV, JSON, XLSX, XML, and TXT.
-* Convert image files between formats such as JPEG, PNG, BMP, and TIFF.
+* Convert image files between formats such as JPEG, PNG, BMP, TIFF, JFIF and ICO.
 * Convert audio files between formats such as MP3, WAV, FLAC, and AAC.
 * Convert video files between formats such as MP4, AVI, MKV, and MOV.
 
 ### Prerequisites
 The program requires some libraries to download:
 * pandas: For handling data file conversions (e.g., CSV, JSON, XLSX, XML, TXT).
-* Pillow (PIL): For image file conversions (e.g., JPEG, PNG, BMP, TIFF).
-* pydub: For audio file conversions (e.g., MP3, WAV, FLAC, AAC).
-* ffmpeg-python: For video file conversions (e.g., MP4, AVI, MKV, MOV).
+* Pillow (PIL): For image file conversions (e.g., JPEG, PNG, BMP, TIFF, JFIF, ICO).
+* moviepy: For audio and video file conversions (e.g., MP3, WAV, FLAC, AAC, MP4, AVI, MKV, MOV).
 * openpyxl: For reading and writing Excel files (XLSX).
 * lxml: For handling XML files.
   ```sh
-  pip install pandas pillow pydub ffmpeg-python openpyxl lxml
+  pip install pandas pillow moviepy openpyxl lxml
 
   ```
 
