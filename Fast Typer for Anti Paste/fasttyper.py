@@ -8,7 +8,7 @@ def super_fast_typing(text):
         pyautogui.write(" ")  
 
 def on_paste_hotkey():
-    text_to_type = """Answer"""
+    text_to_type = """Answer""" # Write your text
     
     time.sleep(1)  
     super_fast_typing(text_to_type)
